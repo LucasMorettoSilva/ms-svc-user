@@ -1,0 +1,27 @@
+<server description="Sample Liberty server">
+  <featureManager>
+    <feature>jaxrs-2.1</feature>
+    <feature>jsonp-1.1</feature>
+    <feature>jsonb-1.0</feature>
+    <feature>cdi-2.0</feature>
+    <feature>jpa-2.2</feature>
+    <feature>mpHealth-2.0</feature>
+  </featureManager>
+
+  <webApplication location="ms-svc-person.war" contextRoot="${app.context.root}"/>
+
+  <httpEndpoint
+    host="*"
+    httpPort="${default.http.port}"
+    httpsPort="${default.https.port}"
+    id="defaultHttpEndpoint"/>
+
+  <library id="derbyJDBCLib">
+    <fileset dir="${shared.resource.dir}" includes="derby*.jar"/>
+  </library>
+  <dataSource id="jpadatasource" jndiName="jdbc/jpadatasource">
+    <jdbcDriver libraryRef="derbyJDBCLib" />
+    <properties.derby.embedded databaseName="libertyDB" createDatabase="create" />
+  </dataSource>
+
+</server>

@@ -1,6 +1,8 @@
 # IDES
 .idea
 
+target
+
 # Compiled class file
 *.class
 *.iml
